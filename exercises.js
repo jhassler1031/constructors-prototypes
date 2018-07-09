@@ -47,6 +47,14 @@ function expect(target) {
 // \__,_/\____/\__, /____/
 //            /____/
 
+var Dog = function(options) {
+  var options = options || {};
+  this.color = options.color || "brown";
+  this.hungry = options.hungry || true;
+  this.status = options.status || "normal";
+  this.owner = options.owner || undefined;
+}
+
 var oz = new Dog({
   color: "red",
   hungry: false
@@ -64,6 +72,19 @@ var charlie = new Dog();
 //   / __ \/ / / / __ `__ \/ __ `/ __ \/ ___/
 //  / / / / /_/ / / / / / / /_/ / / / (__  )
 // /_/ /_/\__,_/_/ /_/ /_/\__,_/_/ /_/____/
+
+var Human = function(options) {
+  var options = options || {};
+  this.cool = options.cool || false;
+}
+
+Human.prototype.pet = function(animal) {
+  animal.status = "happy";
+}
+
+Human.prototype.feed = function(animal) {
+  animal.hungry = false;
+}
 
 var mady = new Human();
 
@@ -93,7 +114,9 @@ it("should make oz red", function(){
 
 it("should be make Moonshine hungry and oz not hungry", function(){
   expect(moonshine.hungry).toBe(true);
+  console.log(moonshine.hungry);
   expect(oz.hungry).toBe(false);
+  console.log(oz.hungry);
 });
 
 it("should make Moonshine no longer hungry when you feed him", function(){
