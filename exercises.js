@@ -50,7 +50,12 @@ function expect(target) {
 var Dog = function(options) {
   var options = options || {};
   this.color = options.color || "brown";
-  this.hungry = options.hungry || true;
+  if (options.hungry===false) {
+    this.hungry = options.hungry;
+  }
+  else {
+    this.hungry = true;
+  }
   this.status = options.status || "normal";
   this.owner = options.owner || undefined;
 }
